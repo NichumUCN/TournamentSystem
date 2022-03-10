@@ -39,7 +39,7 @@ namespace TournamentSystem.DataAccess {
 		public void UpdatePerson(Person person)
 		{
 			string sqlQuery =
-				"UPDATE Person SET @personFirstName, @personLastName, @personNickname, @mail, @birthdate WHERE PersonId = @personId";
+				"UPDATE Person SET @personFirstName, @personLastName, @personNickname, @email, @birthdate WHERE PersonId = @personId";
 			using (_dbContext.Connection)
 			{
 				_dbContext.Connection.Execute(sqlQuery, new
