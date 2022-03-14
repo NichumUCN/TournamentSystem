@@ -9,12 +9,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Person](
-	[personId] [int] IDENTITY(1,1) NOT NULL,
-	[personFirstName] [varchar](255) NULL,
-	[personLastName] [varchar](255) NULL,
-	[personNickname] [varchar](255) NULL,
-	[email] [varchar](255) NULL,
-	[birthdate] [datetime] NULL,
+	[PersonId] [int] IDENTITY(1,1) NOT NULL,
+	[PersonFirstName] [varchar](255) NULL,
+	[PersonLastName] [varchar](255) NULL,
+	[PersonNickname] [varchar](255) NULL,
+	[Email] [varchar](255) NULL,
+	[Birthdate] [datetime] NULL,
+	[PersonDetailsId] [nvarchar](450) NOT NULL REFERENCES AspNetUsers(Id),
 PRIMARY KEY CLUSTERED 
 (
 	[personId] ASC
