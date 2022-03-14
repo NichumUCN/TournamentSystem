@@ -3,9 +3,6 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<head>
-    <script src="js/JQuery.js"></script>
-</head>
 
 <h1>Edit</h1>
 
@@ -16,15 +13,15 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <label>Firstname</label><br/>
-            <input type="text"><br/>
+            <input asp-for="PersonFirstName" type="text"><br/>
             <label>Lastname</label><br/>
-            <input type="text"><br/>
+            <input asp-for="PersonLastName" type="text"><br/>
             <label>Nickname</label><br/>
-            <input type="text"><br/>
+            <input asp-for="PersonNickname" type="text"><br/>
             <label>Email</label><br/>
-            <input type="text"><br/>
-            @*<label>Birthdate</label><br/>
-            <input type="datetime"/><br/>*@
+            <input asp-for="Email" type="text"><br/>
+           @* <label>Birthdate</label><br/>
+            <input asp-for="Birthdate" type="datetime"/><br/>*@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary"/>

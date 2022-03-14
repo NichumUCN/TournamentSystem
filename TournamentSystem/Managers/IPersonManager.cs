@@ -5,8 +5,9 @@ namespace TournamentSystem.Managers {
 	{
 		//void CreatePerson();
 		List<Person> GetAllPersons();
-		Person GetPersonById(int id);
-		void UpdatePerson(Person person);
-		void DeletePerson(Person person);
+		Person GetPersonById(int personId);
+		bool UpdatePerson(int personId, IFormCollection collection);
+		bool DeletePerson(int personId);
+		bool CreatePerson(IFormCollection collection);
 	}
 }

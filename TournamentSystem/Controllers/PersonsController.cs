@@ -12,8 +12,7 @@ namespace TournamentSystem.Controllers {
 		}
 
 		// GET: PersonsController/Details/5
-		public ActionResult Details(int id)
-		{
+		public ActionResult Details(int id) {
 			IPersonManager personManager = new PersonManager();
 			return View(personManager.GetPersonById(id));
 		}
@@ -28,6 +27,8 @@ namespace TournamentSystem.Controllers {
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(IFormCollection collection) {
 			try {
+				IPersonManager personManager = new PersonManager();
+				personManager.CreatePerson(collection);
 				return RedirectToAction(nameof(Index));
 			} catch {
 				return View();
@@ -35,8 +36,7 @@ namespace TournamentSystem.Controllers {
 		}
 
 		// GET: PersonsController/Edit/5
-		public ActionResult Edit(int id)
-		{
+		public ActionResult Edit(int id) {
 			return View();
 		}
 
@@ -46,8 +46,7 @@ namespace TournamentSystem.Controllers {
 		public ActionResult Edit(int id, IFormCollection collection) {
 			try {
 				IPersonManager personManager = new PersonManager();
-				Person person = personManager.GetPersonById(id);
-				personManager.UpdatePerson(person);
+				personManager.UpdatePerson(id, collection);
 				return RedirectToAction(nameof(Index));
 			} catch {
 				return View();
@@ -56,6 +55,8 @@ namespace TournamentSystem.Controllers {
 
 		// GET: PersonsController/Delete/5
 		public ActionResult Delete(int id) {
+			IPersonManager personManager = new PersonManager();
+			personManager.DeletePerson(id);
 			return View();
 		}
 

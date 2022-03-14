@@ -13,7 +13,15 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label>Firstname</label><br/>
+                <input asp-for="PersonFirstName" type="text"><br/>
+                <label>Lastname</label><br/>
+                <input asp-for="PersonLastName" type="text"><br/>
+                <label>Nickname</label><br/>
+                <input asp-for="PersonNickname" type="text"><br/>
+                <label>Email</label><br/>
+                <input asp-for="Email" type="text"><br/>
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
