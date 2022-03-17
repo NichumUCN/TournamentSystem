@@ -14,8 +14,7 @@ CREATE TABLE [dbo].[Person](
 	[PersonLastName] [varchar](255) NULL,
 	[PersonNickname] [varchar](255) NULL,
 	[Email] [varchar](255) NULL,
-	[Birthdate] [datetime] NULL,
-	[PersonDetailsId] [nvarchar](450) NOT NULL REFERENCES AspNetUsers(Id),
+	[Birthdate] [datetime] NULL
 PRIMARY KEY CLUSTERED 
 (
 	[personId] ASC

@@ -128,6 +128,21 @@ namespace TournamentSystem.Data.Migrations {
 					.HasName("UserNameIndex")
 					.HasFilter("[NormalizedUserName] IS NOT NULL");
 
+				b.Property<string>("PersonFirstName")
+					.HasColumnType("nvarchar(256)")
+					.HasMaxLength(256);
+
+				b.Property<string>("PersonLastName")
+					.HasColumnType("nvarchar(256)")
+					.HasMaxLength(256);
+
+				b.Property<string>("PersonNickname")
+					.HasColumnType("nvarchar(256)")
+					.HasMaxLength(256);
+
+				b.Property<DateTime>("Birthdate")
+					.HasColumnType("DateTime");
+
 				b.ToTable("AspNetUsers");
 			});
 
@@ -150,6 +165,7 @@ namespace TournamentSystem.Data.Migrations {
 				b.HasKey("Id");
 
 				b.HasIndex("UserId");
+
 
 				b.ToTable("AspNetUserClaims");
 			});

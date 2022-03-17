@@ -9,7 +9,7 @@ namespace TournamentSystem.DataAccess {
 			return new PersonDao(GetDbContext());
 		}
 
-		private static DbContext GetDbContext()
+		private static DbContext? GetDbContext()
 		{
 			return DbContext.Instance(ConnectionString);
 		}

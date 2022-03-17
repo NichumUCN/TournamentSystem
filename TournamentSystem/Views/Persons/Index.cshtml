@@ -9,22 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
-        <tr>
-            <th></th>
-        </tr>
+    <tr>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <div> @item.PersonFirstName.ToString() @item.PersonLastName.ToString() @item.PersonNickname.ToString() @item.Email.ToString()</div>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PersonId }) |
-            @Html.ActionLink("Details", "Details", new {id=item.PersonId}) |
-            @Html.ActionLink("Delete", "Delete", new {id=item.PersonId})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <div> @item.PersonFirstName.ToString() @item.PersonLastName.ToString() @item.PersonNickname.ToString() @item.Email.ToString()</div>
+                @Html.ActionLink("Edit", "Edit", new { id=item.PersonId }) |
+                @Html.ActionLink("Details", "Details", new {id=item.PersonId}) |
+                @Html.ActionLink("Delete", "Delete", new {id=item.PersonId})
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

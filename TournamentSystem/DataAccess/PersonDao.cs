@@ -3,19 +3,20 @@ using Dapper;
 
 namespace TournamentSystem.DataAccess {
 	public class PersonDao : IPersonDao {
-		private readonly DbContext _dbContext;
+		private readonly DbContext? _dbContext;
 
-		public PersonDao(DbContext dbContext) {
+		public PersonDao(DbContext? dbContext) {
 			_dbContext = dbContext;
 		}
 
 		public List<Person> GetAllPersons() {
-			List<Person> listOfPersons = null;
+			List<Person>? listOfPersons = null;
 			string sqlQuery =
 				"SELECT personId, personFirstName, personLastName, personNickname, email, birthdate FROM Person";
-			using (_dbContext.Connection) {
-				listOfPersons = _dbContext.Connection.Query<Person>(sqlQuery).ToList();
+			using (_dbContext?.Connection) {
+				listOfPersons = _dbContext?.Connection.Query<Person>(sqlQuery).ToList();
 			}
+
 			return listOfPersons;
 		}
 
@@ -24,11 +25,17 @@ namespace TournamentSystem.DataAccess {
 			string sqlQuery =
 				"SELECT personId, personFirstName, personLastName, personNickname, email, birthdate FROM Person WHERE personId = @personId";
 			var parameters = new { personId = id };
-			using (_dbContext.Connection) {
+			using (_dbContext?.Connection) {
 				person = _dbContext.Connection.QuerySingle<Person>(sqlQuery, parameters);
 			}
+
 			return person;
 		}
+
+		//public bool UpdatePerson(Person person)
+		//{
+		//	throw new NotImplementedException();
+		//}
 
 		public bool UpdatePerson(Person person) {
 			bool restult = false;
@@ -46,6 +53,7 @@ namespace TournamentSystem.DataAccess {
 					restult = true;
 				}
 			}
+
 			return restult;
 		}
 
@@ -58,8 +66,31 @@ namespace TournamentSystem.DataAccess {
 					result = true;
 				}
 			}
+
 			return result;
 		}
+
+		//public bool CreatePerson(Person person)
+		//{
+		//	bool result = false;
+		//	string sqlQuery = "";
+		//	using (_dbContext.Connection)
+		//	{
+		//		var param = new
+		//		{
+		//			personFirstName = person.PersonFirstName,
+		//			personLastName = person.PersonLastName,
+		//			personNickname = person.PersonNickname,
+		//			email = person.Email
+		//			//birthdate = person.Birthdate
+		//		};
+		//		if (_dbContext.Connection.Execute(sqlQuery, param) == 1)
+		//		{
+		//			result = true;
+		//		}
+
+		//		return result;
+		//	}
 
 		public bool CreatePerson(Person person) {
 			bool result = false;
@@ -80,4 +111,5 @@ namespace TournamentSystem.DataAccess {
 			return result;
 		}
 	}
+
 }

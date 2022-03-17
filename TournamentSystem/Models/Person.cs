@@ -1,4 +1,7 @@
-﻿namespace TournamentSystem.Models {
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
+namespace TournamentSystem.Models {
 	public class Person {
 		public int PersonId;
 		public string PersonFirstName;
@@ -6,6 +9,8 @@
 		public string PersonNickname;
 		public string Email;
 		public DateTime Birthdate;
+
+		
 
 		public Person(int personId, string personFirstName, string personLastName, string personNickname, string email, DateTime birthdate) {
 			PersonId = personId;
@@ -22,6 +27,15 @@
 			PersonNickname = personNickname;
 			Email = email;
 			Birthdate = birthdate;
+		}
+		public Person(int personId, string personFirstName, string personLastName, string personNickname, string email) {
+			PersonId = personId;
+			PersonFirstName = personFirstName;
+			PersonLastName = personLastName;
+			PersonNickname = personNickname;
+			Email = email;
+			//Email = email;
+			//Birthdate = birthdate;
 		}
 	}
 }

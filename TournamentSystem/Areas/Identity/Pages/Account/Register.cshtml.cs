@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
+using TournamentSystem.Managers;
 
 namespace TournamentSystem.Areas.Identity.Pages.Account
 {
@@ -98,8 +100,22 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "Firstname")]
-            public string Firstname { get; set; }
+            public string FirstName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Lastname")]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nickname")]
+            public string Nickname { get; set; }
+
+            
         }
 
 
@@ -119,7 +135,10 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var result = await _userManager.CreateAsync(user, Input.Password/*, Input.FirstName, Input.LastName, Input.Nickname, Input*/);
+
+                //IPersonManager personManager = new PersonManager();
+                //personManager.CreatePerson()
 
                 if (result.Succeeded)
                 {

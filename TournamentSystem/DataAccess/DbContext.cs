@@ -5,9 +5,9 @@ using ConfigurationManager = System.Configuration.ConfigurationManager;
 namespace TournamentSystem.DataAccess {
 	public class DbContext {
 
-		private static DbContext _instance = null;
+		private static DbContext? _instance = null;
 
-		public SqlConnection Connection = null;
+		public SqlConnection? Connection = null;
 
 		private DbContext() {
 		}
