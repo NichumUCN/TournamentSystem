@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TournamentSystem.Data;
+using TournamentSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

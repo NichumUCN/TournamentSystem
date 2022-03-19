@@ -30,7 +30,7 @@ namespace TournamentSystem.Managers {
 		}
 
 		public bool UpdatePerson(int personId, IFormCollection collection) {
-			bool restult;
+			bool result;
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			try {
 				Person person = personDao.GetById(personId);
@@ -43,12 +43,12 @@ namespace TournamentSystem.Managers {
 				person.PersonLastName = collection["PersonLastName"];
 				person.PersonNickname = collection["PersonNickname"];
 				person.Email = collection["Email"];
-				restult = personDao.UpdatePerson(person);
+				result = personDao.UpdatePerson(person);
 			} catch (Exception e) {
 				Console.WriteLine(e);
 				throw;
 			}
-			return restult;
+			return result;
 		}
 
 		public bool DeletePerson(int personId) {
