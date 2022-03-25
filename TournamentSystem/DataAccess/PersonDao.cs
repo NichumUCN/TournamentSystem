@@ -70,7 +70,7 @@ namespace TournamentSystem.DataAccess {
 			return result;
 		}
 
-		//public bool CreatePerson(Person person)
+		//public bool CreatePersonFromForm(Person person)
 		//{
 		//	bool result = false;
 		//	string sqlQuery = "";

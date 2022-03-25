@@ -28,7 +28,7 @@ namespace TournamentSystem.Controllers {
 		public ActionResult Create(IFormCollection collection) {
 			try {
 				IPersonManager personManager = new PersonManager();
-				personManager.CreatePerson(collection);
+				personManager.CreatePersonFromForm(collection);
 				return RedirectToAction(nameof(Index));
 			} catch {
 				return View();

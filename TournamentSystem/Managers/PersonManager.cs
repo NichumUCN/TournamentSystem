@@ -12,7 +12,6 @@ namespace TournamentSystem.Managers {
 				Console.WriteLine(e);
 				throw;
 			}
-
 			return listOfPersons;
 		}
 
@@ -60,11 +59,10 @@ namespace TournamentSystem.Managers {
 				Console.WriteLine(e);
 				throw;
 			}
-
 			return result;
 		}
 
-		public bool CreatePerson(IFormCollection collection) {
+		public bool CreatePersonFromForm(IFormCollection collection) {
 			bool result = false;
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			string firstname = collection["PersonFirstName"];
@@ -82,5 +80,19 @@ namespace TournamentSystem.Managers {
 			return result;
 		}
 
+		public bool CreatePerson(string firstName, string lastName, string nickname, string email, DateTime birthdate) {
+			bool result = false;
+			IPersonDao personDao = DaoFactory.CreatePersonDao();
+			Person person = new Person(firstName, lastName, nickname, email, birthdate);
+			try {
+				if (personDao.CreatePerson(person)) {
+					result = true;
+				}
+			} catch (Exception e) {
+				Console.WriteLine(e);
+				throw;
+			}
+			return result;
+		}
 	}
 }

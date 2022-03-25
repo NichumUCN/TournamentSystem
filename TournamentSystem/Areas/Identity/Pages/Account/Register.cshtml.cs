@@ -138,7 +138,7 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password/*, Input.FirstName, Input.LastName, Input.Nickname, Input*/);
 
                 //IPersonManager personManager = new PersonManager();
-                //personManager.CreatePerson()
+                //personManager.CreatePersonFromForm()
 
                 if (result.Succeeded)
                 {
