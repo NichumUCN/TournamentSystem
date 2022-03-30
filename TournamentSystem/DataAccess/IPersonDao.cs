@@ -3,9 +3,9 @@
 namespace TournamentSystem.DataAccess {
 	public interface IPersonDao {
 		List<Person> GetAllPersons();
-		Person GetById(int id);
+		Person GetByEmail(string personEmail);
 		bool UpdatePerson(Person person);
-		bool DeletePerson(int id);
+		bool DeletePerson(string personEmail);
 		bool CreatePerson(Person person);
 	}
 }

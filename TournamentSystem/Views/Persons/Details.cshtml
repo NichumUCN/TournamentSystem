@@ -13,7 +13,6 @@
     </dl>
 </div>
 <div>
-    @Model.PersonId.ToString() @Model.PersonFirstName.ToString() @Model.PersonLastName.ToString() @Model.PersonNickname.ToString() @Model.Email.ToString() @Model.Birthdate.ToString()
-    @Html.ActionLink("Edit", "Edit", new {/* id = Model.PrimaryKey */}) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonEmail }) |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -8,18 +8,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+
+ALTER TABLE [dbo].[AspNetUsers] ADD Unique (NormalizedEmail)
+
 CREATE TABLE [dbo].[Person](
-	[PersonId] [int] IDENTITY(1,1) NOT NULL,
 	[PersonFirstName] [varchar](255) NULL,
 	[PersonLastName] [varchar](255) NULL,
 	[PersonNickname] [varchar](255) NULL,
-	[Email] [varchar](255) NULL,
-	[Birthdate] [datetime] NULL
-PRIMARY KEY CLUSTERED 
-(
-	[personId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
+	[PersonEmail] [nvarchar](256) PRIMARY KEY,
+	[PersonBirthdate] [datetime] NULL,
+	FOREIGN KEY (PersonEmail) REFERENCES AspNetUsers(NormalizedEmail)
+	)
+
 
 

@@ -3,45 +3,33 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TournamentSystem.Models {
 	public class Person : IEnrollable{
-	public int PersonId;
 	public string PersonFirstName;
 	public string PersonLastName;
 	public string PersonNickname;
-	public string Email;
-	public DateTime Birthdate;
+	public string PersonEmail;
+	public DateTime PersonBirthdate;
 		
 
-	public Person(int personId, string personFirstName, string personLastName, string personNickname, string email,
-		DateTime birthdate)
+	public Person(string personFirstName, string personLastName, string personNickname, string personEmail,
+		DateTime personBirthdate)
 	{
-		PersonId = personId;
 		PersonFirstName = personFirstName;
 		PersonLastName = personLastName;
 		PersonNickname = personNickname;
-		Email = email;
-		Birthdate = birthdate;
+		PersonEmail = personEmail;
+		PersonBirthdate = personBirthdate;
 	}
 
-	public Person(string personFirstName, string personLastName, string personNickname, string email,
-		DateTime birthdate)
-	{
-		PersonFirstName = personFirstName;
-		PersonLastName = personLastName;
-		PersonNickname = personNickname;
-		Email = email;
-		Birthdate = birthdate;
-	}
 
-	public Person(int personId, string personFirstName, string personLastName, string personNickname, string email)
-	{
-		PersonId = personId;
-		PersonFirstName = personFirstName;
-		PersonLastName = personLastName;
-		PersonNickname = personNickname;
-		Email = email;
-		//Email = email;
-		//Birthdate = birthdate;
-	}
+
+	//public Person(string personFirstName, string personLastName, string personNickname, string personEmail)
+	//{
+	//	PersonFirstName = personFirstName;
+	//	PersonLastName = personLastName;
+	//	PersonNickname = personNickname;
+	//	PersonEmail = personEmail;
+	//	//PersonBirthdate = personBirthdate;
+	//}
 
 	public bool EnrollInTournament(Tournament tournament)
 	{

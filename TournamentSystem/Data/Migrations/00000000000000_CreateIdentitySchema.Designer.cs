@@ -78,7 +78,7 @@ namespace TournamentSystem.Data.Migrations {
 					.IsConcurrencyToken()
 					.HasColumnType("nvarchar(max)");
 
-				b.Property<string>("Email")
+				b.Property<string>("PersonEmail")
 					.HasColumnType("nvarchar(256)")
 					.HasMaxLength(256);
 
@@ -140,7 +140,7 @@ namespace TournamentSystem.Data.Migrations {
 					.HasColumnType("nvarchar(256)")
 					.HasMaxLength(256);
 
-				b.Property<DateTime>("Birthdate")
+				b.Property<DateTime>("PersonBirthdate")
 					.HasColumnType("DateTime");
 
 				b.ToTable("AspNetUsers");

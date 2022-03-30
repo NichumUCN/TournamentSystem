@@ -17,7 +17,7 @@ namespace TournamentSystemTest {
 			//Arrange
 			t1 = new Team("Team 1");
 			t2 = new Team("Team 2");
-			p1 = new Person("Hans", "Eriksen", "Erik", "Email.dk", new DateTime(2003, 10, 09));
+			p1 = new Person("Hans", "Eriksen", "Erik", "PersonEmail.dk", new DateTime(2003, 10, 09));
 			p2 = new Person("Jens", "Jensen", "Jenner", "nyEmail.dk", new DateTime(2000, 09, 12));
 			p3 = new Person("Agnes", "Agnesen", "Anger", "test@mail.com", new DateTime(1999, 09, 01));
 			tournament = new Tournament(1, "Tournament one", "BeerPong", "Test description",

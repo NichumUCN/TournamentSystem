@@ -12,7 +12,7 @@ namespace TournamentSystem.DataAccess {
 		public List<Person> GetAllPersons() {
 			List<Person>? listOfPersons = null;
 			string sqlQuery =
-				"SELECT personId, personFirstName, personLastName, personNickname, email, birthdate FROM Person";
+				"SELECT PersonFirstName, PersonLastName, PersonNickname, PersonEmail, PersonBirthdate FROM Person";
 			using (_dbContext?.Connection) {
 				listOfPersons = _dbContext?.Connection.Query<Person>(sqlQuery).ToList();
 			}
@@ -20,11 +20,11 @@ namespace TournamentSystem.DataAccess {
 			return listOfPersons;
 		}
 
-		public Person GetById(int id) {
+		public Person GetByEmail(string personEmail) {
 			Person person = null;
 			string sqlQuery =
-				"SELECT personId, personFirstName, personLastName, personNickname, email, birthdate FROM Person WHERE personId = @personId";
-			var parameters = new { personId = id };
+				"SELECT PersonFirstName, PersonLastName, PersonNickname, PersonEmail, PersonBirthdate FROM Person WHERE PersonEmail = @PersonEmail";
+			var parameters = new { PersonEmail = personEmail };
 			using (_dbContext?.Connection) {
 				person = _dbContext.Connection.QuerySingle<Person>(sqlQuery, parameters);
 			}
@@ -32,21 +32,15 @@ namespace TournamentSystem.DataAccess {
 			return person;
 		}
 
-		//public bool UpdatePerson(Person person)
-		//{
-		//	throw new NotImplementedException();
-		//}
-
 		public bool UpdatePerson(Person person) {
 			bool restult = false;
 			string sqlQuery =
-				"UPDATE Person SET personFirstName = @firstName, personLastName = @lastName, personNickname = @nickname, email = @emailIn WHERE personId = @id";
+				"UPDATE Person SET PersonFirstName = @PersonFirstName, PersonLastName = @PersonLastName, PersonNickname = @PersonNickname WHERE PersonEmail = @PersonEmail";
 			var param = new {
-				firstName = person.PersonFirstName,
-				lastName = person.PersonLastName,
-				nickname = person.PersonNickname,
-				emailIn = person.Email,
-				id = person.PersonId
+				PersonFirstName = person.PersonFirstName,
+				PersonLastName = person.PersonLastName,
+				PersonNickname = person.PersonNickname
+				
 			};
 			using (_dbContext.Connection) {
 				if (_dbContext.Connection.Execute(sqlQuery, param) == 1) {
@@ -57,11 +51,11 @@ namespace TournamentSystem.DataAccess {
 			return restult;
 		}
 
-		public bool DeletePerson(int personId) {
+		public bool DeletePerson(string personEmail) {
 			bool result = false;
-			string sqlQuery = "DELETE FROM Person WHERE personId = @id";
+			string sqlQuery = "DELETE FROM Person WHERE PersonEmail = @PersonEMail";
 			using (_dbContext.Connection) {
-				var param = new { id = personId };
+				var param = new { PersonEmail = personEmail};
 				if (_dbContext.Connection.Execute(sqlQuery, param) == 1) {
 					result = true;
 				}
@@ -81,8 +75,8 @@ namespace TournamentSystem.DataAccess {
 		//			personFirstName = person.PersonFirstName,
 		//			personLastName = person.PersonLastName,
 		//			personNickname = person.PersonNickname,
-		//			email = person.Email
-		//			//birthdate = person.Birthdate
+		//			email = person.PersonEmail
+		//			//birthdate = person.PersonBirthdate
 		//		};
 		//		if (_dbContext.Connection.Execute(sqlQuery, param) == 1)
 		//		{
@@ -101,8 +95,8 @@ namespace TournamentSystem.DataAccess {
 					personFirstName = person.PersonFirstName,
 					personLastName = person.PersonLastName,
 					personNickname = person.PersonNickname,
-					email = person.Email
-					//birthdate = person.Birthdate
+					email = person.PersonEmail
+					//birthdate = person.PersonBirthdate
 				};
 				if (_dbContext.Connection.Execute(sqlQuery, param) == 1) {
 					result = true;

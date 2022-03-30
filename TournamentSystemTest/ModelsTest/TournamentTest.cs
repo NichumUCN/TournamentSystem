@@ -12,7 +12,7 @@ namespace TournamentSystemTest {
 			//Arrange
 			tournament = new Tournament(1, "Tournament1", "BeerPong", "Test description",
 				new DateTime(2023, 10, 22, 18, 00, 00), 4);
-			p1 = new Person("Hans", "Eriksen", "Erik", "Email.dk", new DateTime(2003, 10, 09));
+			p1 = new Person("Hans", "Eriksen", "Erik", "PersonEmail.dk", new DateTime(2003, 10, 09));
 			p2 = new Person("Jens", "Jensen", "Jenner", "nyEmail.dk", new DateTime(2000, 09, 12));
 			t1 = new Team("First team");
 		}

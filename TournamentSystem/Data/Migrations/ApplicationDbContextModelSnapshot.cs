@@ -76,7 +76,7 @@ namespace TournamentSystem.Data.Migrations {
 					.IsConcurrencyToken()
 					.HasColumnType("nvarchar(max)");
 
-				b.Property<string>("Email")
+				b.Property<string>("PersonEmail")
 					.HasColumnType("nvarchar(256)")
 					.HasMaxLength(256);
 
@@ -126,20 +126,6 @@ namespace TournamentSystem.Data.Migrations {
 					.HasName("UserNameIndex")
 					.HasFilter("[NormalizedUserName] IS NOT NULL");
 
-				b.Property<string>("PersonFirstName")
-					.HasColumnType("nvarchar(256)")
-					.HasMaxLength(256);
-
-				b.Property<string>("PersonLastName")
-					.HasColumnType("nvarchar(256)")
-					.HasMaxLength(256);
-
-				b.Property<string>("PersonNickname")
-					.HasColumnType("nvarchar(256)")
-					.HasMaxLength(256);
-
-				b.Property<DateTime>("Birthdate")
-					.HasColumnType("DateTime");
 
 				b.ToTable("AspNetUsers");
 			});

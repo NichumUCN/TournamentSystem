@@ -15,11 +15,11 @@ namespace TournamentSystem.Managers {
 			return listOfPersons;
 		}
 
-		public Person GetPersonById(int personId) {
+		public Person GetPersonByEmail(string personEmail) {
 			Person person;
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			try {
-				person = personDao.GetById(personId);
+				person = personDao.GetByEmail(personEmail);
 			} catch (Exception e) {
 				Console.WriteLine(e);
 				throw;
@@ -28,11 +28,11 @@ namespace TournamentSystem.Managers {
 			return person;
 		}
 
-		public bool UpdatePerson(int personId, IFormCollection collection) {
+		public bool UpdatePerson(string personEmail, IFormCollection collection) {
 			bool result;
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			try {
-				Person person = personDao.GetById(personId);
+				Person person = personDao.GetByEmail(personEmail);
 
 				// Hvorfor skal der laves en ny connectionstring?
 				// Den er jo static men der er fejl hvis ikke man opretter en ny hver gang der oprettes forbindelese til databasen?
@@ -41,7 +41,7 @@ namespace TournamentSystem.Managers {
 				person.PersonFirstName = collection["PersonFirstName"];
 				person.PersonLastName = collection["PersonLastName"];
 				person.PersonNickname = collection["PersonNickname"];
-				person.Email = collection["Email"];
+				person.PersonEmail = collection["PersonEmail"];
 				result = personDao.UpdatePerson(person);
 			} catch (Exception e) {
 				Console.WriteLine(e);
@@ -50,11 +50,11 @@ namespace TournamentSystem.Managers {
 			return result;
 		}
 
-		public bool DeletePerson(int personId) {
+		public bool DeletePerson(string personEmail) {
 			bool result;
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			try {
-				result = personDao.DeletePerson(personId);
+				result = personDao.DeletePerson(personEmail);
 			} catch (Exception e) {
 				Console.WriteLine(e);
 				throw;
@@ -68,8 +68,8 @@ namespace TournamentSystem.Managers {
 			string firstname = collection["PersonFirstName"];
 			string lastname = collection["PersonLastName"];
 			string nickname = collection["PersonNickname"];
-			string email = collection["Email"];
-			//string birthdate = collection["Birthdate"];
+			string email = collection["PersonEmail"];
+			//string birthdate = collection["PersonBirthdate"];
 			Person person = new Person(firstname, lastname, nickname, email, new DateTime(1995, 02, 08));
 			try {
 				result = personDao.CreatePerson(person);

@@ -11,7 +11,7 @@ namespace TournamentSystemTest {
 		private Team t1;
 		public PersonTest() {
 			//Arrange
-			p1 = new Person("Hans", "Eriksen", "Erik", "Email.dk", new DateTime(2003, 10, 09));
+			p1 = new Person("Hans", "Eriksen", "Erik", "PersonEmail.dk", new DateTime(2003, 10, 09));
 			tournament = new Tournament(1, "Tournament1", "BeerPong", "Test description",
 				new DateTime(2023, 10, 22, 18, 00, 00), 4);
 			t1 = new Team("Team one");
@@ -23,11 +23,11 @@ namespace TournamentSystemTest {
 			string expectedFirstName = "Hans";
 			string expectedLastName = "Eriksen";
 			string expectedNickname = "Erik";
-			string expectedEmail = "Email.dk";
+			string expectedEmail = "PersonEmail.dk";
 			DateTime expectedDateTime = new DateTime(2003, 10, 09);
 
 			//Act
-			p1 = new Person("Hans", "Eriksen", "Erik", "Email.dk", new DateTime(2003, 10, 09));
+			p1 = new Person("Hans", "Eriksen", "Erik", "PersonEmail.dk", new DateTime(2003, 10, 09));
 
 			//Assert FirstName
 			Assert.Equal(expectedFirstName, p1.PersonFirstName);
@@ -35,10 +35,10 @@ namespace TournamentSystemTest {
 			Assert.Equal(expectedLastName, p1.PersonLastName);
 			//Assert Nickname
 			Assert.Equal(expectedNickname, p1.PersonNickname);
-			//Assert Email
-			Assert.Equal(expectedEmail, p1.Email);
+			//Assert PersonEmail
+			Assert.Equal(expectedEmail, p1.PersonEmail);
 			//Assert BirthDate
-			Assert.Equal(expectedDateTime, p1.Birthdate);
+			Assert.Equal(expectedDateTime, p1.PersonBirthdate);
 		}
 
 		[Fact]

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TournamentSystem.Managers;
 using TournamentSystem.Models;
 
 namespace TournamentSystem.Controllers {
+
 	public class PersonsController : Controller {
 		// GET: PersonsController
 		public ActionResult Index() {
@@ -12,9 +14,10 @@ namespace TournamentSystem.Controllers {
 		}
 
 		//GET: PersonsController/Details/5
-		public ActionResult Details(int id) {
+		public ActionResult Details(string personEmail)
+		{
 			IPersonManager personManager = new PersonManager();
-			return View(personManager.GetPersonById(id));
+			return View(personManager.GetPersonByEmail(personEmail));
 		}
 
 		//GET: PersonsController/Create
@@ -36,17 +39,17 @@ namespace TournamentSystem.Controllers {
 		}
 
 		//GET: PersonsController/Edit/5
-		public ActionResult Edit(int id) {
+		public ActionResult Edit(string personEmail) {
 			return View();
 		}
 
 		//POST: PersonsController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection) {
+		public ActionResult Edit(string personEmail, IFormCollection collection) {
 			try {
 				IPersonManager personManager = new PersonManager();
-				personManager.UpdatePerson(id, collection);
+				personManager.UpdatePerson(personEmail, collection);
 				return RedirectToAction(nameof(Index));
 			} catch {
 				return View();
@@ -54,16 +57,16 @@ namespace TournamentSystem.Controllers {
 		}
 
 		//GET: PersonsController/Delete/5
-		public ActionResult Delete(int id) {
+		public ActionResult Delete(string personEmail) {
 			IPersonManager personManager = new PersonManager();
-			personManager.DeletePerson(id);
+			personManager.DeletePerson(personEmail);
 			return View();
 		}
 
 		//POST: PersonsController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection) {
+		public ActionResult Delete(string personEmail, IFormCollection collection) {
 			try {
 				return RedirectToAction(nameof(Index));
 			} catch {

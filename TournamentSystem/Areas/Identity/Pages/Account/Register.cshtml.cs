@@ -78,7 +78,7 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "PersonEmail")]
             public string Email { get; set; }
 
             /// <summary>
