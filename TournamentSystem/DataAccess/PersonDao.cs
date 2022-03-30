@@ -89,14 +89,14 @@ namespace TournamentSystem.DataAccess {
 		public bool CreatePerson(Person person) {
 			bool result = false;
 			string sqlQuery =
-				"INSERT INTO Person (personFirstName, personLastName, personNickname, email) VALUES (@personFirstName, @personLastName, @personNickname, @email)";
+				"INSERT INTO Person (PersonFirstName, PersonLastName, PersonNickname, PersonEmail, PersonBirthdate) VALUES (@PersonFirstName, @PersonLastName, @PersonNickname, @PersonEmail, @PersonBirthdate)";
 			using (_dbContext.Connection) {
 				var param = new {
-					personFirstName = person.PersonFirstName,
-					personLastName = person.PersonLastName,
-					personNickname = person.PersonNickname,
-					email = person.PersonEmail
-					//birthdate = person.PersonBirthdate
+					PersonFirstName = person.PersonFirstName,
+					PersonLastName = person.PersonLastName,
+					PersonNickname = person.PersonNickname,
+					PersonEmail = person.PersonEmail,
+					PersonBirthdate = person.PersonBirthdate
 				};
 				if (_dbContext.Connection.Execute(sqlQuery, param) == 1) {
 					result = true;

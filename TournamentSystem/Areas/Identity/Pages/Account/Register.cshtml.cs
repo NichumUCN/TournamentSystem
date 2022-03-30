@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using TournamentSystem.Managers;
+using TournamentSystem.Models;
 
 namespace TournamentSystem.Areas.Identity.Pages.Account
 {
@@ -66,6 +67,31 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+       
+        [BindProperty]
+        public PersonInputModel PersonInput { get; set; }
+
+        public class PersonInputModel
+        {
+	        [Required]
+	        [DataType(DataType.Text)]
+	        [Display(Name = "Firstname")]
+	        public string FirstName { get; set; }
+
+	        [Required]
+	        [DataType(DataType.Text)]
+	        [Display(Name = "Lastname")]
+	        public string LastName { get; set; }
+
+	        [DataType(DataType.Text)]
+	        [Display(Name = "Nickname")]
+	        public string Nickname { get; set; }
+
+	        [DataType(DataType.Date)]
+	        [Display(Name = "Birthdate")]
+	        public DateTime Birthdate { get; set; }
+
+        }
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -100,22 +126,6 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Firstname")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Lastname")]
-            public string LastName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Nickname")]
-            public string Nickname { get; set; }
-
-            
         }
 
 
@@ -128,6 +138,7 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
+            IPersonManager personManager = new PersonManager();
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -135,10 +146,12 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password/*, Input.FirstName, Input.LastName, Input.Nickname, Input*/);
+                var result = await _userManager.CreateAsync(user, Input.Password);
+                personManager.CreatePerson(PersonInput.FirstName, PersonInput.LastName, PersonInput.Nickname,
+	                Input.Email, PersonInput.Birthdate);
 
-                //IPersonManager personManager = new PersonManager();
-                //personManager.CreatePersonFromForm()
+
+
 
                 if (result.Succeeded)
                 {
@@ -178,9 +191,9 @@ namespace TournamentSystem.Areas.Identity.Pages.Account
 
         private IdentityUser CreateUser()
         {
-            try
+	        try
             {
-                return Activator.CreateInstance<IdentityUser>();
+	            return Activator.CreateInstance<IdentityUser>();
             }
             catch
             {

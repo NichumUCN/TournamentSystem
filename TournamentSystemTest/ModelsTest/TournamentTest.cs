@@ -49,7 +49,7 @@ namespace TournamentSystemTest {
 			//Assert Name
 			Assert.Equal(expectedName, t.TournamentName);
 			//Assert Game
-			Assert.Equal(expectedGame, t.TournamentGame);
+			Assert.Equal(expectedGame, t.TournamentDiscipline);
 			//Assert Description
 			Assert.Equal(expectedDescription, t.TournamentDescription);
 			//Assert Time of event

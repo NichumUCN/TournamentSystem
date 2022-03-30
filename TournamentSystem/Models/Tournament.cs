@@ -3,20 +3,22 @@
 
 		public int TournamentId { get; set; }
 		public string TournamentName { get; set; }
-		public string TournamentGame { get; set; }
+		public string TournamentDiscipline { get; set; }
 		public string TournamentDescription { get; set; }
 		public DateTime TimeOfEvent { get; set; }
+		public DateTime LatestTimeOfEnrollment { get; set; }
 		public int MaxNoParticipants { get; set; }
 		public readonly HashSet<IEnrollable> EnrollmentCollection;
 
 
-		public Tournament(int tournamentId, string tournamentName, string tournamentGame, string tournamentDescription, DateTime timeOfEvent, int maxNoParticipants)
+		public Tournament(int tournamentId, string tournamentName, string tournamentDiscipline, string tournamentDescription, DateTime timeOfEvent, DateTime latestTimeOfEnrollment, int maxNoParticipants)
 		{
 			TournamentId = tournamentId;
 			TournamentName = tournamentName;
-			TournamentGame = tournamentGame;
+			TournamentDiscipline = tournamentDiscipline;
 			TournamentDescription = tournamentDescription;
 			TimeOfEvent = timeOfEvent;
+			LatestTimeOfEnrollment = latestTimeOfEnrollment;
 			MaxNoParticipants = maxNoParticipants;
 			EnrollmentCollection = new HashSet<IEnrollable>();
 		}

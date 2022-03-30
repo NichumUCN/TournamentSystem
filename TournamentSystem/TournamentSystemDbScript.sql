@@ -20,5 +20,28 @@ CREATE TABLE [dbo].[Person](
 	FOREIGN KEY (PersonEmail) REFERENCES AspNetUsers(NormalizedEmail)
 	)
 
+CREATE TABLE Tournament (
+TournamentId INT PRIMARY KEY IDENTITY NOT NULL, 
+TournamentName varchar(255) NOT NULL, 
+TournamentDiscipline varchar(255) NOT NULL, 
+TournamentDescription varchar(255) NULL, 
+TimeOfEvent DATE NOT NULL, 
+LatestTimeOfEnrollment DATE NOT NULL, 
+MaxNoOfParticipants INT NULL
+)
 
+CREATE TABLE Team (
+TeamId INT PRIMARY KEY IDENTITY NOT NULL, 
+TeamName varchar(255) NOT NULL
+)
+
+CREATE TABLE EnrolledInTournament (
+EnrollementId INT PRIMARY KEY IDENTITY NOT NULL,
+TournamentId INT NOT NULL,
+PersonId nvarchar(256),
+TeamId INT,
+FOREIGN KEY (TournamentId) REFERENCES Tournament(TournamentId),
+FOREIGN KEY (TeamId) REFERENCES Team(TeamId),
+FOREIGN KEY (PersonId) REFERENCES Person(PersonEmail)
+)
 
