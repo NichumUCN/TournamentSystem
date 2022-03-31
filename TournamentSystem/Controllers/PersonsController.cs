@@ -14,8 +14,7 @@ namespace TournamentSystem.Controllers {
 		}
 
 		//GET: PersonsController/Details/5
-		public ActionResult Details(string personEmail)
-		{
+		public ActionResult Details(string personEmail) {
 			IPersonManager personManager = new PersonManager();
 			return View(personManager.GetPersonByEmail(personEmail));
 		}
@@ -26,8 +25,8 @@ namespace TournamentSystem.Controllers {
 		}
 
 		//POST: PersonsController/Create
-	   [HttpPost]
-	   [ValidateAntiForgeryToken]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(IFormCollection collection) {
 			try {
 				IPersonManager personManager = new PersonManager();

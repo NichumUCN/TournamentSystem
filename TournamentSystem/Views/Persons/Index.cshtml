@@ -19,7 +19,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.PersonFirstName @item.PersonLastName @item.PersonNickname @item.PersonEmail.ToLower()
+                <p>
+                    Name: @item.PersonFirstName @item.PersonLastName<br/>
+                    Nickname: @item.PersonNickname<br/>
+                    Email: @item.PersonEmail
+                </p>
                 @Html.ActionLink("Edit", "Edit", new {id = item.PersonEmail}) |
                 @Html.ActionLink("Details", "Details", new {id = item.PersonEmail}) |
                 @Html.ActionLink("Delete", "Delete", new {id = item.PersonEmail})

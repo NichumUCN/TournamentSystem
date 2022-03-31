@@ -95,7 +95,7 @@ namespace TournamentSystem.DataAccess {
 					PersonFirstName = person.PersonFirstName,
 					PersonLastName = person.PersonLastName,
 					PersonNickname = person.PersonNickname,
-					PersonEmail = person.PersonEmail,
+					PersonEmail = person.PersonEmail.ToUpper(),
 					PersonBirthdate = person.PersonBirthdate
 				};
 				if (_dbContext.Connection.Execute(sqlQuery, param) == 1) {

@@ -6,7 +6,7 @@ namespace TournamentSystem.Models {
 	public string PersonFirstName;
 	public string PersonLastName;
 	public string PersonNickname;
-	public string PersonEmail;
+	public readonly string PersonEmail;
 	public DateTime PersonBirthdate;
 		
 

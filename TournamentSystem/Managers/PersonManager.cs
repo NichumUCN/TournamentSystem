@@ -33,15 +33,12 @@ namespace TournamentSystem.Managers {
 			IPersonDao personDao = DaoFactory.CreatePersonDao();
 			try {
 				Person person = personDao.GetByEmail(personEmail);
-
-				// Hvorfor skal der laves en ny connectionstring?
-				// Den er jo static men der er fejl hvis ikke man opretter en ny hver gang der oprettes forbindelese til databasen?
+				
 				personDao = DaoFactory.CreatePersonDao();
 
 				person.PersonFirstName = collection["PersonFirstName"];
 				person.PersonLastName = collection["PersonLastName"];
 				person.PersonNickname = collection["PersonNickname"];
-				person.PersonEmail = collection["PersonEmail"];
 				result = personDao.UpdatePerson(person);
 			} catch (Exception e) {
 				Console.WriteLine(e);
